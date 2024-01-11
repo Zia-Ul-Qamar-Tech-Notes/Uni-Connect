@@ -11,8 +11,11 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Uni-Connect',
-  description: 'A platform for event management & Ticketing.',
+  title: 'Evently',
+  description: 'Evently is a platform for event management.',
+  icons: {
+    icon: '/assets/images/logo.svg'
+  }
 }
 
 export default function RootLayout({
