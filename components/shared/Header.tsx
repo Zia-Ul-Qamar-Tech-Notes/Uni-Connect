@@ -1,11 +1,15 @@
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+import { SignedIn, SignedOut, UserButton, auth } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "../ui/button"
-import NavItems from "./NavItems"
+import NavItemsAdmin from "./NavItemsAdmin"
+import NavItemsClient from "./NavItemsClient"
 import MobileNav from "./MobileNav"
 
 const Header = () => {
+  const { sessionClaims } = auth();
+  const primaryEmail = sessionClaims?.primaryEmail;
+  const userId = sessionClaims?.userId as string
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
@@ -17,9 +21,15 @@ const Header = () => {
         </Link>
 
         <SignedIn>
+        {primaryEmail === 'zia.softwareprogrammer@gmail.com' || 'Ahmadalitahir54@gmail.com' ? (
           <nav className="md:flex-between hidden w-full max-w-xs">
-            <NavItems />
+            <NavItemsAdmin />
           </nav>
+          ) : (
+            <nav className="md:flex-between hidden w-full max-w-xs">
+            <NavItemsClient />
+          </nav>
+          )}
         </SignedIn>
 
         <div className="flex w-32 justify-end gap-3">
