@@ -16,8 +16,8 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
 
   return (
     <>
-    <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain">
-      <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
+    <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain m-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl m-12">
         <Image 
           src={event.imageUrl}
           alt="hero image"
