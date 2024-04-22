@@ -53,7 +53,7 @@ const DataTableCollection = ({
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {data.map((event) => (
-                <TableRow key={event._id} event={event} collectionType={collectionType} />
+                <TableRow key={event._id} event={event} />
               ))}
             </tbody>
           </table>
