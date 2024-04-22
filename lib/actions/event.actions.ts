@@ -171,3 +171,31 @@ export async function getRelatedEventsByCategory({
     handleError(error)
   }
 }
+
+// GET PAST EVENTS
+export async function getPastEvents({
+  limit = 3,
+  page = 1,
+}) {
+  try {
+    await connectToDatabase()
+
+    const skipAmount = (Number(page) - 1) * limit;
+    const currentDate = new Date();
+
+    const conditions = { endDateTime: { $lt: currentDate } };
+
+    const eventsQuery = Event.find(conditions)
+      .sort({ endDateTime: 'desc' }) // Sorting by most recent first
+      .skip(skipAmount)
+      .limit(limit);
+
+    const events = await populateEvent(eventsQuery);
+    const eventsCount = await Event.countDocuments(conditions);
+
+    return { data: JSON.parse(JSON.stringify(events)), totalPages: Math.ceil(eventsCount / limit) };
+  } catch (error) {
+    handleError(error);
+  }
+}
+

@@ -5,7 +5,9 @@ const CreateEvent = () => {
   const { sessionClaims } = auth();
 
   const userId = sessionClaims?.userId as string;
+  const primaryEmail = sessionClaims?.primaryEmail as string;
 
+  if(primaryEmail == "zia.softwareprogrammer@gmail.com"){
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
@@ -17,6 +19,12 @@ const CreateEvent = () => {
       </div>
     </>
   )
+}
+else{
+  <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
+        <h3 className="wrapper h3-bold text-center sm:text-left">No Access for Now</h3>
+      </section>
+}
 }
 
 export default CreateEvent

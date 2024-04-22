@@ -12,7 +12,7 @@ type CardProps = {
   hidePrice?: boolean;
 };
 
-const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
+const ExpCard = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
@@ -29,12 +29,9 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       <Link
         href={`/events/${event._id}`}
         style={{ backgroundImage: `url(${event.imageUrl})` }}
-        className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500 transition-all duration-300 hover:scale-105"
-      >
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <p className="text-white text-2xl font-bold">View Details</p>
-        </div>
-      </Link>
+        className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
+      />
+      {/* IS EVENT CREATOR ... */}
 
       {isEventCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
@@ -61,9 +58,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         <p className="p-medium-16 p-medium-18 text-grey-500">{formatDateTime(event.startDateTime).dateTime}</p>
 
         <Link href={`/events/${event._id}`}>
-          <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black transition-all duration-300 hover:text-primary-500">
-            {event.title}
-          </p>
+          <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">{event.title}</p>
         </Link>
 
         <div className="flex-between w-full">
@@ -83,4 +78,4 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   );
 };
 
-export default Card;
+export default ExpCard;

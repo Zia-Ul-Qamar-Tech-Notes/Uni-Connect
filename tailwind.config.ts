@@ -25,6 +25,8 @@ module.exports = withUt({
           DEFAULT: '#624CF5',
           foreground: 'hsl(var(--primary-foreground))',
         },
+        eventbriteBlue: '#0692ff',
+        eventbriteGray: '#f7f7f7',
         coral: {
           500: '#15BF59',
         },
