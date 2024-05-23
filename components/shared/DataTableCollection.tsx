@@ -1,18 +1,18 @@
-import { IEvent } from '@/lib/database/models/event.model';
-import React from 'react';
-import TableRow from './DataTable';
-import Pagination from './Pagination';
+import { IEvent } from "@/lib/database/models/event.model";
+import React from "react";
+import TableRow from "./DataTable";
+import Pagination from "./Pagination";
 
 type CollectionProps = {
-  data: IEvent[],
-  emptyTitle: string,
-  emptyStateSubtext: string,
-  limit: number,
-  page: number | string,
-  totalPages?: number,
-  urlParamName?: string,
-  collectionType?: 'Events_Organized' | 'My_Tickets' | 'All_Events'
-}
+  data: IEvent[];
+  emptyTitle: string;
+  emptyStateSubtext: string;
+  limit: number;
+  page: number | string;
+  totalPages?: number;
+  urlParamName?: string;
+  collectionType?: "Events_Organized" | "My_Tickets" | "All_Events";
+};
 
 const DataTableCollection = ({
   data,
@@ -26,26 +26,41 @@ const DataTableCollection = ({
   return (
     <>
       {data.length > 0 ? (
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+        <div className="overflow-x-auto sm:rounded-lg shadow-md">
+          <table className="min-w-full bg-white divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Title
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Price
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Date
                 </th>
-                {collectionType !== 'My_Tickets' && (
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                {collectionType !== "My_Tickets" && (
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Category
                   </th>
                 )}
-                {collectionType === 'Events_Organized' && (
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                {collectionType === "Events_Organized" && (
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
                     Organizer
                   </th>
                 )}
@@ -57,20 +72,26 @@ const DataTableCollection = ({
               ))}
             </tbody>
           </table>
-          {totalPages == 1 && (
-            <Pagination urlParamName={urlParamName} page={page} totalPages={totalPages} />
+          {totalPages > 1 && (
+            <Pagination
+              urlParamName={urlParamName}
+              page={page}
+              totalPages={totalPages}
+            />
           )}
         </div>
       ) : (
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">{emptyTitle}</h3>
+            <h3 className="text-lg leading-6 font-medium text-gray-900">
+              {emptyTitle}
+            </h3>
             <p className="mt-1 text-sm text-gray-500">{emptyStateSubtext}</p>
           </div>
         </div>
       )}
     </>
   );
-}
+};
 
 export default DataTableCollection;

@@ -275,3 +275,7 @@ body {
   background-color: #624cf5 !important;
 }
 
+/* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+

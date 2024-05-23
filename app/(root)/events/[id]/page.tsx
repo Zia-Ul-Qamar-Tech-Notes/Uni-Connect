@@ -13,6 +13,7 @@ import { IOrder } from "@/lib/database/models/order.model";
 import { IEvent } from "@/lib/database/models/event.model";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const EventDetails = async ({
   params: { id },
@@ -29,6 +30,13 @@ const EventDetails = async ({
   const orders = await getOrdersByUser({ userId, page: ordersPage });
 
   const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
+
+  const order = orders?.data.find(
+    (order: IOrder) => order.event._id === event._id
+  );
+  const orderId = order?._id; // Retrieve the order ID
+
+  console.log("This is OrderId" + orderId);
 
   const hasBought = orderedEvents.some(
     (orderedEvent: IEvent) => orderedEvent._id === event._id
@@ -85,7 +93,25 @@ const EventDetails = async ({
                   className="btn-disabled flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-md"
                   disabled
                 >
-                  Already Bought
+                  <Link
+                    href={{
+                      pathname: `/events/${id}/ticket`,
+                      query: {
+                        eventName: event.title,
+                        price: event.price,
+                        location: event.location,
+                        date: formatDateTime(event.startDateTime).dateOnly,
+                        time: formatDateTime(event.startDateTime).timeOnly,
+                        etime: formatDateTime(event.endDateTime).timeOnly,
+                        img: event.imageUrl,
+                        organizer: event.organizer.firstName,
+                        id: event._id,
+                        orderId: orderId,
+                      },
+                    }}
+                  >
+                    See Ticket
+                  </Link>
                 </button>
               ) : (
                 <CheckoutButton event={event} />

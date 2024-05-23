@@ -1,10 +1,10 @@
-import { IEvent } from '@/lib/database/models/event.model';
-import { formatDateTime } from '@/lib/utils';
-import { auth } from '@clerk/nextjs';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { DeleteConfirmation } from './DeleteConfirmation';
+import { IEvent } from "@/lib/database/models/event.model";
+import { formatDateTime } from "@/lib/utils";
+import { auth } from "@clerk/nextjs";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { DeleteConfirmation } from "./DeleteConfirmation";
 
 type CardProps = {
   event: IEvent;
@@ -23,7 +23,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   return (
     <div
       className={`group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px] ${
-        isEventExpired ? 'pointer-events-none filter grayscale' : ''
+        isEventExpired ? "pointer-events-none filter grayscale" : ""
       }`}
     >
       <Link
@@ -39,7 +39,12 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       {isEventCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event._id}/update`}>
-            <Image src="/assets/icons/edit.svg" alt="edit" width={20} height={20} />
+            <Image
+              src="/assets/icons/edit.svg"
+              alt="edit"
+              width={20}
+              height={20}
+            />
           </Link>
 
           <DeleteConfirmation eventId={event._id} />
@@ -50,7 +55,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         {!hidePrice && (
           <div className="flex gap-2">
             <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60">
-              {event.isFree ? 'FREE' : `$${event.price}`}
+              {event.isFree ? "FREE" : `$${event.price}`}
             </span>
             <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
               {event.category.name}
@@ -58,7 +63,9 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
           </div>
         )}
 
-        <p className="p-medium-16 p-medium-18 text-grey-500">{formatDateTime(event.startDateTime).dateTime}</p>
+        <p className="p-medium-16 p-medium-18 text-grey-500">
+          {formatDateTime(event.startDateTime).dateTime}
+        </p>
 
         <Link href={`/events/${event._id}`}>
           <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black transition-all duration-300 hover:text-primary-500">
@@ -73,8 +80,15 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
 
           {hasOrderLink && (
             <Link href={`/orders?eventId=${event._id}`} className="flex gap-2">
-              <p className="text-primary-500 pointer-events-auto">Order Details</p>
-              <Image src="/assets/icons/arrow.svg" alt="search" width={10} height={10} />
+              <p className="text-primary-500 pointer-events-auto">
+                Order Details
+              </p>
+              <Image
+                src="/assets/icons/arrow.svg"
+                alt="search"
+                width={15}
+                height={15}
+              />
             </Link>
           )}
         </div>
