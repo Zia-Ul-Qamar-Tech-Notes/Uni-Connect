@@ -14,7 +14,7 @@ type CollectionProps = {
   collectionType?: "Events_Organized" | "My_Tickets" | "All_Events";
 };
 
-const PastCollection: React.FC<CollectionProps> = ({
+const EventsHappening: React.FC<CollectionProps> = ({
   data,
   emptyTitle,
   emptyStateSubtext,
@@ -24,16 +24,18 @@ const PastCollection: React.FC<CollectionProps> = ({
   urlParamName,
 }: CollectionProps) => {
   // Filter upcoming events based on start date
-  const upcomingEvents = data.filter(
-    (event) => new Date(event.endDateTime) < new Date()
+  const eventsHappening = data.filter(
+    (event) =>
+      new Date(event.startDateTime) < new Date() &&
+      new Date(event.endDateTime) > new Date()
   );
 
   return (
     <>
-      {upcomingEvents.length > 0 ? (
+      {eventsHappening.length > 0 ? (
         <div className="flex flex-col items-center gap-10">
           <ul className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
-            {upcomingEvents.map((event) => {
+            {eventsHappening.map((event) => {
               const hasOrderLink = collectionType === "Events_Organized";
               const hidePrice = collectionType === "My_Tickets";
 
@@ -67,4 +69,4 @@ const PastCollection: React.FC<CollectionProps> = ({
   );
 };
 
-export default PastCollection;
+export default EventsHappening;

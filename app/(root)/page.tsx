@@ -11,6 +11,7 @@ import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 import UpComingCollection from "@/components/shared/UpComing";
 import PastCollection from "@/components/shared/Past";
+import EventsHappening from "@/components/shared/EventsHappening";
 
 export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
@@ -110,6 +111,18 @@ export default async function Home({ searchParams }: SearchParamProps) {
           <h2 className="h2-bold">UpComing Events</h2>
 
           <UpComingCollection
+            data={events?.data}
+            emptyTitle="No Events Found"
+            emptyStateSubtext="Come back later"
+            collectionType="All_Events"
+            limit={9}
+            page={page}
+            totalPages={events?.totalPages}
+          />
+
+          <h2 className="h2-bold">Events Happening Now!</h2>
+
+          <EventsHappening
             data={events?.data}
             emptyTitle="No Events Found"
             emptyStateSubtext="Come back later"

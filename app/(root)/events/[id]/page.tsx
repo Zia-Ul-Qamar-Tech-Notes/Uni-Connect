@@ -29,11 +29,21 @@ const EventDetails = async ({
 
   const orders = await getOrdersByUser({ userId, page: ordersPage });
 
-  const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
+  // const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
+
+  // const order = orders?.data.find(
+  //   (order: IOrder) => order.event._id === event._id
+  // );
+
+  const orderedEvents =
+    orders?.data
+      .filter((order: IOrder) => order.event) // Filter out orders with undefined/null events
+      .map((order: IOrder) => order.event) || [];
 
   const order = orders?.data.find(
-    (order: IOrder) => order.event._id === event._id
+    (order: IOrder) => order.event && order.event._id === event._id
   );
+
   const orderId = order?._id; // Retrieve the order ID
 
   console.log("This is OrderId" + orderId);
@@ -109,6 +119,7 @@ const EventDetails = async ({
                         orderId: orderId,
                       },
                     }}
+                    prefetch={true}
                   >
                     See Ticket
                   </Link>
