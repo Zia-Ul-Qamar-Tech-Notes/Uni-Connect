@@ -115,7 +115,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
             emptyTitle="No Events Found"
             emptyStateSubtext="Come back later"
             collectionType="All_Events"
-            limit={9}
+            limit={15}
             page={page}
             totalPages={events?.totalPages}
           />
@@ -127,7 +127,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
             emptyTitle="No Events Found"
             emptyStateSubtext="Come back later"
             collectionType="All_Events"
-            limit={9}
+            limit={15}
             page={page}
             totalPages={events?.totalPages}
           />
@@ -139,7 +139,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
             emptyTitle="No Events Found"
             emptyStateSubtext="Come back later"
             collectionType="All_Events"
-            limit={9}
+            limit={15}
             page={page}
             totalPages={events?.totalPages}
           />

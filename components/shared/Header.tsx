@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import NavItems from "./NavItems";
 import MobileNav from "./MobileNav";
-import { Input } from '../ui/input';
+import { Input } from "../ui/input";
 
 const Header = () => {
   return (
@@ -12,9 +12,9 @@ const Header = () => {
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
           <Image
-            src="/assets/images/logo1.png"
+            src="/assets/images/logo2.png"
             width={128}
-            height={38}
+            height={60}
             alt="Evently logo"
           />
         </Link>
