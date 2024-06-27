@@ -23,7 +23,7 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
         <Search placeholder="Search buyer name..." />
       </section>
 
-      <button>
+      <button className="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-md">
         <Link
           href={{
             pathname: `/generatePDF`,
